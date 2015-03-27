@@ -138,5 +138,21 @@
             $this->assertEquals($test_brand2, $result);
         }
 
+        function testUpdate()
+        {
+            $style = "Nike";
+            $id = 1;
+            $test_brand = new Brand($style, $id);
+            $test_brand->save();
+
+            $new_brand = "Mercury";
+
+            $test_brand->update($new_brand);
+
+            $result = $test_brand->getStyle();
+            $this->assertEquals($new_brand, $result);
+
+        }
+
     }
 ?>

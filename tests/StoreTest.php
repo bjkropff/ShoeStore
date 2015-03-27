@@ -141,6 +141,24 @@
             $this->assertEquals($test_store2, $result);
         }
 
+        function testUpdate()
+        {
+            $name = "KMart";
+            $id = 1;
+            $test_store = new Store($name, $id);
+            $test_store->save();
+
+            $new_name = "The Big K";
+
+            $test_store->update($new_name);
+
+            $result = $test_store->getName();
+            $this->assertEquals($new_name, $result);
+
+
+
+        }
+
 
     }//closes class
 ?>

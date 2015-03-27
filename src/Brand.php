@@ -78,5 +78,14 @@
             }
             return $found_brand;
         }
+
+        function update($new_info)
+        {
+            $GLOBALS['DB']->exec("UPDATE brands SET style '{$new_info}' WHERE id = {$this->getId()};");
+            $this->setStyle($new_info);
+        }
+
+
+
     }//closes class
 ?>
