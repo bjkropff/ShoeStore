@@ -13,6 +13,11 @@
 
     class StoreTest extends PHPUnit_Framework_TestCase
     {
+        protected function tearDown()
+        {
+            Store::deleteAll();
+            //Brand::deleteAll();
+        }
 
         function testGetLoctation()
         {
@@ -33,7 +38,49 @@
             //Act
             $result = $test_store->getId();
             //Assert
-            $this->assertEquals($id, $result);
+            $this->assertEquals(true, is_numeric($result));
+        }
+
+        function testSetName()
+        {
+            //Arrange
+            $name = "KMart";
+            $id = 1;
+            $test_store = new Store($name, $id);
+            //Act
+            $test_store->setName("Target");
+            //Assert
+            $result = $test_store->getName();
+            $this->assertEquals("Target", $result);
+        }
+
+        function testSetId()
+        {
+            //Arrange
+            $name = "KMart";
+            $id = 1;
+            $test_store = new Store($name, $id);
+            //Act
+            $test_store->setId(1234);
+
+            //Assert
+            $result = $test_store->getId();
+            $this->assertEquals(1234, $result);
+        }
+
+        function testSave()
+        {
+            $name = "KMart";
+            $id = 1;
+            $test_store = new Store($name, $id);
+            $test_store->save();
+
+            //Act
+            $result = Store::getAll();
+            
+            //Assert
+            $this->assertEquals($test_store, $result[0]);
+
         }
 
     }//closes class
