@@ -83,5 +83,26 @@
 
         }
 
+        function testGetAll()
+        {
+            $name = "KMart";
+            $id = 1;
+            $test_store = new Store($name, $id);
+            $test_store->save();
+
+            $name2 = "Walgreens";
+            $id2 = 1;
+            $test_store2 = new Store($name2, $id2);
+            $test_store2->save();
+
+
+            //Act
+            $result = Store::getAll();
+
+            //Assert
+            $this->assertEquals([$test_store, $test_store2], $result);
+        }
+
+
     }//closes class
 ?>

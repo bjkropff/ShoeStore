@@ -21,7 +21,7 @@
         function testGetStyle()
         {
             //Arrange
-            $style = "KMart";
+            $style = "Nike";
             $test_brand = new Brand($style);
             //Act
             $result = $test_brand->getStyle();
@@ -31,7 +31,7 @@
         function testGetId()
         {
             //Arrange
-            $style = "KMart";
+            $style = "Nike";
             $id = 1;
             $test_brand = new Brand($style, $id);
             //Act
@@ -43,20 +43,20 @@
         function testSetStyle()
         {
             //Arrange
-            $style = "KMart";
+            $style = "Nike";
             $id = 1;
             $test_brand = new Brand($style, $id);
             //Act
-            $test_brand->setStyle("Target");
+            $test_brand->setStyle("Kicks");
             //Assert
             $result = $test_brand->getStyle();
-            $this->assertEquals("Target", $result);
+            $this->assertEquals("Kicks", $result);
         }
 
         function testSetId()
         {
             //Arrange
-            $style = "KMart";
+            $style = "Nike";
             $id = 1;
             $test_brand = new Brand($style, $id);
             //Act
@@ -69,7 +69,7 @@
 
         function testSave()
         {
-            $style = "KMart";
+            $style = "Nike";
             $id = 1;
             $test_brand = new Brand($style, $id);
             $test_brand->save();
@@ -80,6 +80,25 @@
             //Assert
             $this->assertEquals($test_brand, $result[0]);
 
+        }
+
+        function testGetAll()
+        {
+            $style = "Nike";
+            $id = 1;
+            $test_brand = new Brand($style, $id);
+            $test_brand->save();
+
+            $style2 = "Adidas";
+            $id2 = 3;
+            $test_brand2 = new Brand($style2, $id2);
+            $test_brand2->save();
+
+            //Act
+            $result = Brand::getAll();
+
+            //Assert
+            $this->assertEquals([$test_brand, $test_brand2], $result);
         }
 
     }
