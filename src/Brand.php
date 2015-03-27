@@ -5,9 +5,9 @@
     * $backupStaticAttribute disabled
     */
 
-    //require_once __DIR__."/../src/Shoes.php";
+    require_once __DIR__."/../src/Store.php";
 
-    $DB = new PDO('pgsql:host=localhost;dbname=shoes_test');
+    $DB = new PDO('pgsql:host=localhost;dbname=shoes');
 
     class Brand
     {

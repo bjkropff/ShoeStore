@@ -5,9 +5,9 @@
     * $backupStaticAttribute disabled
     */
 
-    //require_once __DIR__."/../src/Brands.php";
+    require_once __DIR__."/../src/Brand.php";
 
-    $DB = new PDO('pgsql:host=localhost;dbname=shoes_test');
+    $DB = new PDO('pgsql:host=localhost;dbname=shoes');
 
     class Store
     {
@@ -83,6 +83,12 @@
         {
             $GLOBALS['DB']->exec("UPDATE stores SET name '{$new_info}' WHERE id = {$this->getId()};");
             $this->setName($new_info);
+        }
+
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stores WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM brands_stores WHERE store_id = {$this->getId()};");
         }
 
 

@@ -1,0 +1,40 @@
+<html>
+<head>
+    <title>Shoe Stores</title>
+</head>
+<body>
+    <h1>Welcome to Our Stores</h1>
+
+        <form action="/all_stores" method="post">
+            <p>Don't see the store you want?</p>
+            <p>Enter a new store here!</p>
+            <label for="name">Store Name</label>
+            <input type="text" name="name">
+            <button type="submit">Submit</button>
+        </form>
+
+
+        {% if stores is not empty %}
+        <p>
+            Here are your local shoe stores:
+        </p>
+            {% for store in stores %}
+                <p>
+                    <a href="/stores/{{store.getId}}/edit">{{ store.getName }}</a>
+                </p>
+            {% endfor %}
+            <form action="/delete_stores" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit">Delete All Categories</button>
+            </form>
+        {% else %}
+            <p>
+                There are no stores to show at this time.
+            </p>
+        {% endif %}
+        <h3><a href="/">Home</a></h3>
+    </body>
+</html>
+
+</body>
+</html>
