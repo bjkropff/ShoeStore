@@ -1,11 +1,38 @@
 <html>
 <head>
-    <title>Shoe Stores</title>
+    <title>All Brands at Your Local Stores</title>
 </head>
 <body>
+
     <h1>These are all Available Brands</h1>
 
+    <form action="/brands" method="post">
+        <p>Don't see your brand?</p>
+        <p>Enter your brand and we will add it to our local stores!</p>
+        <label for="style">Brand Name</label>
+        <input type="text" name="style">
+        <button type="submit">Submit</button>
+    </form>
 
 
-</body>
+        {% if brands is not empty %}
+        <p>
+            Here are all the brands for your local shoe stores:
+        </p>
+            {% for brand in brands %}
+                <p>
+                    <a href="/brands/{{brand.getId}}/style">{{ brand.getStyle }}</a>
+                </p>
+            {% endfor %}
+            <form action="/delete_all_brands" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit">Delete All Brands</button>
+            </form>
+        {% else %}
+            <p>
+                There are no brands to show at this time.
+            </p>
+        {% endif %}
+        <h3><a href="/">Home</a></h3>
+    </body>
 </html>

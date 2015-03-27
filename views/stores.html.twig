@@ -5,7 +5,7 @@
 <body>
     <h1>Welcome to Our Stores</h1>
 
-        <form action="/all_stores" method="post">
+        <form action="/stores" method="post">
             <p>Don't see the store you want?</p>
             <p>Enter a new store here!</p>
             <label for="name">Store Name</label>
@@ -23,9 +23,9 @@
                     <a href="/stores/{{store.getId}}/edit">{{ store.getName }}</a>
                 </p>
             {% endfor %}
-            <form action="/delete_stores" method="post">
+            <form action="/delete_all_stores" method="post">
                 <input type="hidden" name="_method" value="delete">
-                <button type="submit">Delete All Categories</button>
+                <button type="submit">Delete All Stores</button>
             </form>
         {% else %}
             <p>
