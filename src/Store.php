@@ -91,23 +91,31 @@
             $GLOBALS['DB']->exec("DELETE FROM brands_stores WHERE store_id = {$this->getId()};");
         }
 
-        //Working join statement for guidance
-        // function getBooks()
-        // {
-        //     $statement = $GLOBALS['DB']->query("SELECT books.* FROM authors
-        //                                     JOIN authors_books ON (authors.id = authors_books.authors_id)
-        //                                     JOIN books ON (authors_books.books_id = books.id)
-        //                                 WHERE authors.id = {$this->getId()};");
-        //     $book_id = $statement->fetchAll(PDO::FETCH_ASSOC);
-        //     $books = array();
-        //     foreach($book_id as $book){
-        //         $title = $book['title'];
-        //         $id = $book['id'];
-        //         $new_book = new Book($title, $id);
-        //         array_push($books, $new_book);
-        //     }
-        //     return $books;
-        // }
+        function addBrand($brand)
+        {
+            $GLOBALS['DB']->exec("INSERT INTO brands_stores (brand_id, store_id) VALUES ('{$brand->getId()}, {$this->getId()}');");
+        }
+
+        function getBrands()
+        {
+            $statement = $GLOBALS['DB']->query("SELECT brands.* FROM stores
+                JOIN brands_stores ON (stores.id = brands_stores.store_id)
+                JOIN brands ON (brands_stores.brand_id = brands.id)
+            WHERE stores.id = '{$this->getId()}';");
+
+            $brands_ids = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            $new_brands = array();
+            foreach($brands_ids as $brand){
+                $style = $brand['style'];
+                $id = $brand['id'];
+                $new_brand = new Brand($style, $id);
+                array_push($new_brands, $new_brand);
+            }
+            return $new_brands;
+        }
+
+
 
 
 

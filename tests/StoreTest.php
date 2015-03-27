@@ -5,7 +5,7 @@
     * @backupStaticAttributes disabled
     */
 
-    //require_once "src/Brand.php";
+    require_once "src/Brand.php";
     require_once "src/Store.php";
 
     $DB = new PDO('pgsql:host=localhost;dbname=shoes_test');
@@ -16,10 +16,10 @@
         protected function tearDown()
         {
             Store::deleteAll();
-            //Brand::deleteAll();
+            Brand::deleteAll();
         }
 
-        function testGetName()
+        function test_get_name()
         {
             //Arrange
             $name = "KMart";
@@ -29,7 +29,7 @@
             //Assert
             $this->assertEquals($name, $result);
         }
-        function testGetId()
+        function test_get_Id()
         {
             //Arrange
             $name = "KMart";
@@ -41,7 +41,7 @@
             $this->assertEquals(true, is_numeric($result));
         }
 
-        function testSetName()
+        function test_set_name()
         {
             //Arrange
             $name = "KMart";
@@ -54,7 +54,7 @@
             $this->assertEquals("Target", $result);
         }
 
-        function testSetId()
+        function test_set_id()
         {
             //Arrange
             $name = "KMart";
@@ -68,7 +68,7 @@
             $this->assertEquals(1234, $result);
         }
 
-        function testSave()
+        function test_save()
         {
             $name = "KMart";
             $id = 1;
@@ -83,7 +83,7 @@
 
         }
 
-        function testGetAll()
+        function test_get_all()
         {
             $name = "KMart";
             $id = 1;
@@ -103,7 +103,7 @@
             $this->assertEquals([$test_store, $test_store2], $result);
         }
 
-        function testDeleteAll()
+        function test_delete_all()
         {
             $name = "KMart";
             $id = 1;
@@ -124,7 +124,7 @@
             $this->assertEquals([], $result);
         }
 
-        function testFind()
+        function test_find()
         {
             $name = "KMart";
             $id = 1;
@@ -141,7 +141,7 @@
             $this->assertEquals($test_store2, $result);
         }
 
-        function testUpdate()
+        function test_update()
         {
             $name = "KMart";
             $id = 1;
@@ -159,6 +159,66 @@
 
         }
 
+        function test_delete()
+        {
+            $name = "KMart";
+            $id = 1;
+            $test_store = new Store($name, $id);
+            $test_store->save();
+
+            $name2 = "Walgreens";
+            $id2 = 2;
+            $test_store2 = new Store($name2, $id2);
+            $test_store2->save();
+
+            $test_store->delete();
+
+            $result = Store::getAll();
+            $this->assertEquals([$test_store2], $result);
+        }
+
+        function test_addBrand()
+        {
+            //Arrange
+            $name = "KMart";
+            $id = 1;
+            $test_store = new Store($name, $id);
+            $test_store->save();
+
+            $style = "Nike";
+            $id = 77;
+            $test_brand = new Brand($style, $id);
+            $test_brand->save();
+
+            $test_store->addBrand($test_brand);
+
+            $result = $test_store->getBrands();
+            $this->assertEquals([$test_brand, $test_brand2], $result);
+        }
+
+        function test_getBrands()
+        {
+            $name = "KMart";
+            $id = 1;
+            $test_store = new Store($name, $id);
+            $test_store->save();
+
+            $style = "Nike";
+            $id2 = 77;
+            $test_brand = new Brand($style, $id2);
+            $test_brand->save();
+
+            $style2 = "Adidas";
+            $id3 = 33;
+            $test_brand2 = new Brand($style2, $id3);
+            $test_brand2->save();
+
+            $test_store->addBrand($test_brand);
+            $test_store->addBrand($test_brand2);
+
+            $result = $test_store->getBrands();
+            $this->assertEquals([$test_brand, $test_brand2], $result);
+        }
 
     }//closes class
 ?>

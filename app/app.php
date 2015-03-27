@@ -29,14 +29,15 @@
 
     $app->get("/stores/{id}/edit", function($id) use ($app){
         $store = Store::find($id);
-        return $app['twig']->render('edit.html.twig', array('store' =>$store));
+        return $app['twig']->render('edit.html.twig', array('store' =>$store)); //,'brands' =>$store->getBrands()));
     });
 
     $app->patch('/stores/{id}/edit', function($id) use ($app){
         $update_store = $_POST['new_store'];
-        $store = Store::find($id);
-        $store->update($update_store);
-        return $app['twig']->render('edit.html.twig', array('edit_store' => $store));
+        $new_store = Store::find($id);
+        $new_store->update($update_store);
+
+        return $app['twig']->render('edit.html.twig', array('store' => $new_store));
     });
     $app->delete("/stores/{id}/delete", function($id) use ($app) {
         $store = Store::find($id);

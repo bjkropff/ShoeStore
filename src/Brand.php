@@ -22,7 +22,7 @@
         //Setters
         function setStyle($new_style)
         {
-            $this->style = (string)$new_style;
+            $this->style = (string) $new_style;
         }
 
         function setId($new_id)

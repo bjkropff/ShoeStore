@@ -5,6 +5,36 @@
 <body>
     <h1>{{ store.getName }} <small>Store</small></h1>
 
+    <p>
+        Here is a list of brands sold at this store:
+    </p>
+    <form action="/stores/{{ edit_store.getId }}/edit" method="post">
+        <input type="hidden" name="_method" value="patch">
+            <label for="new_store">Edit Store name</label>
+            <input type="text" name="new_store">
+            <button type="submit">Submit</button>
+        </form>
+
+        {% if brands is not empty %}
+        Brands found at this store:
+            {% for brand in brands %}
+            <ul>
+                <li><a href="/brands/{{ style.getId }}/edit">{{ brand.getStyle }}</a></li>
+            </ul>
+            {% endfor %}
+        {% endif %}
+    <p>
+        Add a brand that is sold here:
+    </p>
+
+    <p>
+        Store no longer exist?
+    </p>
+    <form action="/stores/{{store.getId}}/delete" method="post">
+        <input type="hidden" name="_method" value="delete">
+
+        <button type="submit">Delete</button>
+    </form>
     <h3><a href="/stores">Stores</a></h3>
     <h3><a href="/">Home</a></h3>
 </body>

@@ -21,7 +21,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 CREATE DATABASE shoes;
 CREATE TABLE stores (id serial PRIMARY KEY, name varchar);
 CREATE TABLE brands (id serial PRIMARY KEY, style varchar);
-CREATE TABLE brands_stores (id serial PRIMARY KEY, name_id varchar, style_id varchar);
+CREATE TABLE brands_stores (id serial PRIMARY KEY, brand_id int, store_id int);
 CREATE DATABASE shoes_test WITH TEMPLATE shoes;
 \c shoes_test;
 \dt
