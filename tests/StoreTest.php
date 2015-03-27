@@ -19,7 +19,7 @@
             //Brand::deleteAll();
         }
 
-        function testGetLoctation()
+        function testGetName()
         {
             //Arrange
             $name = "KMart";
@@ -77,7 +77,7 @@
 
             //Act
             $result = Store::getAll();
-            
+
             //Assert
             $this->assertEquals($test_store, $result[0]);
 
