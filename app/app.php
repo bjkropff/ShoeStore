@@ -29,15 +29,15 @@
 
     $app->get("/stores/{id}/edit", function($id) use ($app){
         $store = Store::find($id);
-        return $app['twig']->render('edit.html.twig', array('store' =>$store)); //,'brands' =>$store->getBrands()));
+        return $app['twig']->render('edit.html.twig', array('store' => $store)); //if I could get it to work i would have added this: ,'brands' =>$store->getBrands()));
     });
 
     $app->patch('/stores/{id}/edit', function($id) use ($app){
-        $update_store = $_POST['new_store'];
-        $new_store = Store::find($id);
-        $new_store->update($update_store);
+        $new_name = $_POST['new_name'];
+        $store = Store::find($id);
+        $store->update($new_name);
 
-        return $app['twig']->render('edit.html.twig', array('store' => $new_store));
+        return $app['twig']->render('edit.html.twig', array('store' => $store));
     });
     $app->delete("/stores/{id}/delete", function($id) use ($app) {
         $store = Store::find($id);
@@ -49,8 +49,6 @@
         Store::deleteAll();
         return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
         });
-
-
 
     $app->get('/brands', function() use ($app){
         return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
