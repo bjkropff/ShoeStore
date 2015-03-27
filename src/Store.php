@@ -18,6 +18,19 @@
             $this->name = $new_name;
             $this->id = $new_id;
         }
+
+        //Setters
+        function setName($new_name)
+        {
+            $this->name = (string)$new_name;
+        }
+
+        function setId($new_id)
+        {
+            $this->id = (int) $new_id;
+        }
+
+        //Getters
         function getName()
         {
             return $this->name;
@@ -27,6 +40,8 @@
         {
             return $this->id;
         }
+
+
 
     }//closes class
 ?>
