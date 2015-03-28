@@ -8,7 +8,7 @@
     require_once "src/Brand.php";
     require_once "src/Store.php";
 
-    $DB = new PDO('pgsql:host=localhost;dbname=shoes_test');
+    $DB = new PDO('pgsql:host=localhost;dbname=shoes_test;user=brian;password=1234');
 
 
     class StoreTest extends PHPUnit_Framework_TestCase
@@ -190,7 +190,13 @@
             $test_brand = new Brand($style, $id);
             $test_brand->save();
 
+            $style2 = "Adidas";
+            $id2 = 97;
+            $test_brand2 = new Brand($style2, $id2);
+            $test_brand2->save();
+
             $test_store->addBrand($test_brand);
+            $test_store->addBrand($test_brand2);
 
             $result = $test_store->getBrands();
             $this->assertEquals([$test_brand, $test_brand2], $result);

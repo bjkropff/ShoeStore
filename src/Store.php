@@ -7,7 +7,7 @@
 
     require_once __DIR__."/../src/Brand.php";
 
-    $DB = new PDO('pgsql:host=localhost;dbname=shoes');
+    $DB = new PDO('pgsql:host=localhost;dbname=shoes_test;user=brian;password=1234');
 
     class Store
     {
@@ -93,7 +93,7 @@
 
         function addBrand($brand)
         {
-            $GLOBALS['DB']->exec("INSERT INTO brands_stores (brand_id, store_id) VALUES ('{$brand->getId()}, {$this->getId()}');");
+            $GLOBALS['DB']->exec("INSERT INTO brands_stores (brand_id, store_id) VALUES ({$brand->getId()}, {$this->getId()});");
         }
 
         function getBrands()

@@ -9,7 +9,7 @@
     require_once "src/Store.php";
 
 
-    $DB = new PDO('pgsql:host=localhost;dbname=shoes_test');
+    $DB = new PDO('pgsql:host=localhost;dbname=shoes_test;user=brian;password=1234');
 
 
     class BrandTest extends PHPUnit_Framework_TestCase
