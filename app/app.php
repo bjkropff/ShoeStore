@@ -4,7 +4,7 @@
     require_once __DIR__."/../src/Store.php";
     $app = new Silex\Application();
     //$app['debug'] = true;
-    $DB = new PDO('pgsql:host=localhost;dbname=shoes');
+    $DB = new PDO('pgsql:host=localhost;dbname=shoes;user=brian;password=1234');
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path' => __DIR__.'/../views'
     ));
