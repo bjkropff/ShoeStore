@@ -1,55 +1,56 @@
 <html>
 <head>
-    <title>This Brand</title>
+    <title>All Brands at Your Local Stores</title>
 </head>
 <body>
-    <h1>{{ brand.getStyle }} <small>Brand</small></h1>
 
-    <form class="" action="/brands/{{ brand.getId }}/edit" method="post">
+    <h1>{{ brand.getStyle }}</h1>
 
+    <form action="/brands/{{ brand.getId }}" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <label for="new_style">Edit Store name</label>
     </form>
 
-    <h3><a href="/brands">Brands</a></h3>
-    <h3><a href="/">Home</a></h3>
-</body>
-</html>
 
-
-
-
-
-<form action="/stores/{{ store.getId }}/edit" method="post">
-    <input type="hidden" name="_method" value="patch">
-        <label for="new_name">Edit Store name</label>
-    <input type="text" name="new_name">
-    <button type="submit">Submit</button>
-</form>
-<p>
-    Here is a list of brands sold at this store:
-</p>
-
-{% if brands is not empty %}
-    Brands found at this store:
-    {% for brand in brands %}
-        <ul>
-            <li><a href="/brands/{{ style.getId }}/edit">{{ brand.getStyle }}</a></li>
-        </ul>
-    {% endfor %}
-    {% else %}
+        {% if stores is not empty %}
         <p>
-            There are no brands for this store at this time.
+            Here are all the local shoe stores that carry this brand:
         </p>
-{% endif %}
-
-<p>
-    Add a brand that is sold here:
-</p>
-
-<p>
-    Store no longer exist?
-</p>
-<form action="/stores/{{store.getId}}/delete" method="post">
-    <input type="hidden" name="_method" value="delete">
-
-    <button type="submit">Delete</button>
-</form>
+            {% for store in stores %}
+                <p>
+                    <a href="/stores/{{ store.getId }}">{{ store.getName }}</a>
+                    <form action="/delete_store" method="post">
+                        <input type="hidden" name="_method"  value="delete">
+                        <input value="{{ brand.getId }}" name="brand_id" type="hidden">
+                        <input value="{{ store.getId }}" name="store_id" type="hidden">
+                        <button type="submit">Pull From Store</button>
+                    </form><
+                </p>
+            {% endfor %}
+            <form action="/delete_all_brands" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit">Delete All Brands</button>
+            </form>
+        {% else %}
+            <p>
+                There are no stores to show at this time.
+            </p>
+        {% endif %}
+        <form action="/add_store" method="post">
+            <label for="store_id">Add your products to a store (manager approval pending):</label>
+            <input value="{{ brand.getId }}" id="brand_id" name="brand_id" type="hidden">
+            <select id="store_id" name="store_id" type="text">
+                {% for store in all_stores %}
+                    <option value="{{ store.getId }}"> {{ store.getLocation }} </option>
+                {% endfor %}
+            </select>
+            <button type="submit">Add to store</button>
+        </form>
+        <form action="/brands/{{ brand.getId }}/delete" method="post">
+            <input name="_method" type="hidden" value="delete">
+            <button type="submit">Remove Brand</button>
+        </form>
+        <h3><a href="/brands">Brands</a></h3>
+        <h3><a href="/">Home</a></h3>
+    </body>
+</html>

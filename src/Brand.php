@@ -88,7 +88,6 @@
         function delete()
         {
             $GLOBALS['DB']->exec("DELETE FROM brands WHERE id = {$this->getId()};");
-            $GLOBALS['DB']->exec("DELETE FROM brands_stores WHERE brand_id = {$this->getId()};");
         }
 
         function addStore($store)
@@ -101,18 +100,23 @@
             $statement = $GLOBALS['DB']->query("SELECT stores.* FROM brands
                 JOIN brands_stores ON (brands.id = brands_stores.brand_id)
                 JOIN stores ON (brands_stores.store_id = store.id)
-                WHERE brands.id = '{$this->getId()}';");
+                WHERE brands.id = {$this->getId()};");
 
-            $store_ids = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $all_stores = $statement->fetchAll(PDO::FETCH_ASSOC);
 
             $stores = array();
-            foreach($store_ids as $store) {
+            foreach($all_stores as $store) {
                 $name = $store['name'];
                 $id = $store['id'];
                 $new_store = new Store($name, $id);
                 array_push($store, $new_store);
             }
             return $stores;
+        }
+
+        function deleteStore($store)
+        {
+            $GLOBALS['DB']->exec("DELETE FROM brands_stores WHERE (brand_id, store_id) = ({$this->getId()}, {$store->getId()});");
         }
 
     }//closes class

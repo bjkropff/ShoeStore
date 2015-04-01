@@ -1,5 +1,5 @@
 <html>
-<head>
+<head>brands
     <title>Shoe Stores</title>
 </head>
 <body>
@@ -20,7 +20,7 @@
         </p>
             {% for store in stores %}
                 <p>
-                    <a href="/stores/{{store.getId}}/edit">{{ store.getName }}</a>
+                    <a href="/stores/{{store.getId}}">{{ store.getName }}</a>
                 </p>
             {% endfor %}
             <form action="/delete_all_stores" method="post">
@@ -34,7 +34,4 @@
         {% endif %}
         <h3><a href="/">Home</a></h3>
     </body>
-</html>
-
-</body>
 </html>

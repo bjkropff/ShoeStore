@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>Shoe Stores</title>
+</head>
+<body>
+    <h1>{{ store.getName }} <small>Store</small></h1>
+
+
+    <form action="/stores/{{ store.getId }}/edit" method="post">
+        <input type="hidden" name="_method" value="patch">
+            <label for="new_name">Edit Store name</label>
+        <input type="text" name="new_name">
+        <button type="submit">Submit</button>
+    </form>
+    <p>
+        Here is a list of brands sold at this store:
+    </p>
+
+    {% if brands is not empty %}
+        Brands found at this store:
+        {% for brand in brands %}
+            <ul>
+                <li><a href="/brands/{{ brand.getId }}">{{ brand.getStyle }}</a>
+                    <form action="/delete_brand" method="post">
+                            <input name="_method" type="hidden" value="delete">
+                            <input value="{{ brand.getId }}" id="brand_id" name="brand_id" type="hidden">
+                            <input value="{{ store.getId }}" id="store_id" name="store_id" type="hidden">
+                            <button type="submit">Sold Out</button>
+                        </form></li>
+            </ul>
+        {% endfor %}
+        {% else %}
+            <p>
+                There are no brands for this store at this time.
+            </p>
+    {% endif %}
+
+    <p>
+        Add a brand that is sold here:
+        <form action="/add_brand" method="post">
+            <label for="brand_id">Request a brand (pending corporate approval):</label>
+            <input value="{{ store.getId }}" id="store_id" name="store_id" type="hidden">
+            <select id="brand_id" name="brand_id" type="text">
+                {% for brand in all_brands %}
+                    <option value="{{ brand.getId }}"> {{ brand.getName }} </option>
+                {% endfor %}
+            </select>
+            <button type="submit">Get brand</button>
+        </form>
+    </p>
+
+    <p>
+        Store no longer exist?
+    </p>
+    <form action="/stores/{{ store.getId }}/edit">
+        <button type="submit">Edit your store name</button>
+    </form>
+    <form action="/stores/{{store.getId}}/delete" method="post">
+        <input type="hidden" name="_method" value="delete">
+
+        <button type="submit">Delete</button>
+    </form>
+    <h3><a href="/stores">Stores</a></h3>
+    <h3><a href="/">Home</a></h3>
+</body>
+</html>
