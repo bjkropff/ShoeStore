@@ -155,8 +155,6 @@
             $result = $test_store->getName();
             $this->assertEquals($new_name, $result);
 
-
-
         }
 
         function test_delete()
@@ -179,7 +177,6 @@
 
         function test_addBrand()
         {
-            //Arrange
             $name = "KMart";
             $id = 1;
             $test_store = new Store($name, $id);

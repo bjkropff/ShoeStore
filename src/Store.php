@@ -5,7 +5,7 @@
     * $backupStaticAttribute disabled
     */
 
-    require_once __DIR__."/../src/Brand.php";
+    require_once __DIR__."/../src/Store.php";
 
     $DB = new PDO('pgsql:host=localhost;dbname=shoes;user=brian;password=1234');
 
@@ -100,19 +100,19 @@
         {
             $statement = $GLOBALS['DB']->query("SELECT brands.* FROM stores
                 JOIN brands_stores ON (stores.id = brands_stores.store_id)
-                JOIN brands ON (brands_stores.brand_id = brands.id)
-            WHERE stores.id = '{$this->getId()}';");
+                JOIN brands ON (brands.id = brands_stores.brand_id)
+                WHERE stores.id = '{$this->getId()}';");
 
             $brands_ids = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-            $new_brands = array();
+            $brands = array();
             foreach($brands_ids as $brand){
                 $style = $brand['style'];
                 $id = $brand['id'];
                 $new_brand = new Brand($style, $id);
-                array_push($new_brands, $new_brand);
+                array_push($brands, $new_brand);
             }
-            return $new_brands;
+            return $brands;
         }
 
 
