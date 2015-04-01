@@ -182,43 +182,40 @@
             $test_brand->save();
 
             $name = "KMart";
-            $id = 1;
-            $test_store = new Store($name, $id);
+            $id2 = 1;
+            $test_store = new Store($name, $id2);
             $test_store->save();
 
-            $name2 = "Target";
-            $id2 = 97;
-            $test_store2 = new Store($name2, $id2);
-            $test_store2->save();
 
             $test_brand->addStore($test_store);
-            $test_brand->addStore($test_store2);
 
             $result = $test_brand->getStores();
-            $this->assertEquals([$test_store, $test_store2], $result);
+            $this->assertEquals([$test_store], $result);
         }
 
         function test_getStores()
         {
             $style = "Nike";
-            $id = 77;
+            $id = 1;
             $test_brand = new Brand($style, $id);
             $test_brand->save();
 
             $name = "KMart";
-            $id = 1;
-            $test_store = new Store($name, $id);
+            $id3 = 3;
+            $test_store = new Store($name, $id3);
             $test_store->save();
 
-            $name2 = "Target";
-            $id2 = 97;
+            $name2 = "KMart";
+            $id2 = 2;
             $test_store2 = new Store($name2, $id2);
             $test_store2->save();
 
             $test_brand->addStore($test_store);
             $test_brand->addStore($test_store2);
-
+            //var_dump($test_brand->addStore($test_store2));
             $result = $test_brand->getStores();
+            //var_dump($result);
+
             $this->assertEquals([$test_store, $test_store2], $result);
         }
 

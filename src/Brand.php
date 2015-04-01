@@ -92,24 +92,24 @@
 
         function addStore($store)
         {
-            $GLOBALS['DB']->exec("INSERT INTO brands_store (brand_id, store_id) VALUES ({$this->getId()}), {$store->getId()} ;");
+            $GLOBALS['DB']->exec("INSERT INTO brands_stores (brand_id, store_id) VALUES ({$this->getId()}, {$store->getId()});");
         }
 
         function getStores()
         {
             $statement = $GLOBALS['DB']->query("SELECT stores.* FROM brands
                 JOIN brands_stores ON (brands.id = brands_stores.brand_id)
-                JOIN stores ON (brands_stores.store_id = store.id)
+                JOIN stores ON (stores.id = brands_stores.store_id )
                 WHERE brands.id = {$this->getId()};");
 
             $all_stores = $statement->fetchAll(PDO::FETCH_ASSOC);
 
             $stores = array();
-            foreach($all_stores as $store) {
+            foreach($all_stores as $store){
                 $name = $store['name'];
                 $id = $store['id'];
                 $new_store = new Store($name, $id);
-                array_push($store, $new_store);
+                array_push($stores, $new_store);
             }
             return $stores;
         }
