@@ -9,15 +9,27 @@
         Here is a list of brands sold at this store:
     </p>
 
+    <form action="/add_brand" method="post">
+        <label for="brand_id">Brands to add to this store:</label>
+        <input value="{{ store.getId }}" id="store_id" name="store_id" type="hidden">
+        <select id="brand_id" name="brand_id" type="text">
+            {% for brand in brands %}
+                <option value="{{ brand.getId }}"> {{ brands.getStyle }} </option>
+            {% endfor %}
+        </select>
+        <button type="submit">Get this brand</button>
+    </form>
+
     {% if store_brands is not empty %}
-        Brands to add to this store:
+        Brands in this store:
         {% for brand in store_brands %}
             <ul>
-                <li><a href="/brands/{{ brand.getId }}">{{ brand.getStyle }}</a>
-                    <form action="/delete_brand" method="post">
+                <li><a href="/brands/{{ brands.getId }}">{{ brands.getStyle }}</a>
+                    <form action="/store/{{store.getId}}/brand" method="post">
                         <input name="_method" type="hidden" value="delete">
-                        <input value="{{ brand.getId }}" id="brand_id" name="brand_id" type="hidden">
+                        <input value="{{ brands.getId }}" id="brand_id" name="brand_id" type="hidden">
                         <input value="{{ store.getId }}" id="store_id" name="store_id" type="hidden">
+                        <button type="submit" class="button">Sold Out</button>
                     </form>
                 </li>
             </ul>
@@ -33,6 +45,10 @@
         Store no longer exist?
     </p>
     <a href="/stores/{{ store.getId }}/edit">Edit your store and brands here</a>
+
+
+        </li>
+</ul>
 
 
     <form action="/stores/{{store.getId}}/delete" method="post">

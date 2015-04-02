@@ -7,7 +7,7 @@
 
     require_once __DIR__."/../src/Store.php";
 
-    $DB = new PDO('pgsql:host=localhost;dbname=shoes');
+    $DB = new PDO('pgsql:host=localhost;dbname=shoes;user=brian;password=1234');
 
     class Brand
     {
