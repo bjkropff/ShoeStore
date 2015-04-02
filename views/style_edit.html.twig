@@ -3,7 +3,7 @@
     <title>This Brand</title>
 </head>
 <body>
-    <h1>{{ brand.getStyle }} <small>Brand</small></h1>
+    <h1>{{ brand.getStyle }} <small>Edit</small></h1>
 
     <form action="/brands/{{ brand.getId }}/edit" method="post">
         <input name="_method" type="hidden" value="patch">
@@ -12,7 +12,32 @@
         <button type="submit">Submit</button>
     </form>
 
-    <h3><a href="/brands/{{ brand.getId }}">Brands</a></h3>
+
+    <p>
+        Here is a list of stores that sell this brand:
+    </p>
+
+    {% if every_store is not empty %}
+        Sell your brand at one of these great locations:
+        {% for store in every_store %}
+            <ul>
+                <li><a href="/stores/{{ store.getId }}">{{ store.getName }}</a>
+                    <form action="/delete_store" method="post">
+                        <input name="_method" type="hidden" value="delete">
+                        <input value="{{ brand.getId }}" id="brand_id" name="brand_id" type="hidden">
+                        <input value="{{ store.getId }}" id="store_id" name="store_id" type="hidden">
+                    </form>
+                </li>
+            </ul>
+        {% endfor %}
+        {% else %}
+            <p>
+                There are no brands for this store at this time.
+            </p>
+    {% endif %}
+
+
+    <h3><a href="/brands/{{ brand.getId }}">Go Back</a></h3>
     <h3><a href="/brands">Brands</a></h3>
     <h3><a href="/">Home</a></h3>
 </body>

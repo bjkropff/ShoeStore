@@ -36,19 +36,3 @@
         <h3><a href="/">Home</a></h3>
     </body>
 </html>
-
-
-        <h2>Select Your Brand:</h2>
-        {% if brands is not empty %}
-        <ol>
-            {% for brand in brands|sort %}
-            <li><a href="/brands/{{ brand.getId }}">{{ brand.getName }}</a></li>
-            {% endfor %}
-        </ol>
-        {% else %}
-            <p>There are no current Brands</p>
-        {% endif %}
-
-        <form action="/delete_all_brands" method='post'>
-            <button type="submit" class="btn btn-danger">REMOVE ALL</button>
-        </form>
