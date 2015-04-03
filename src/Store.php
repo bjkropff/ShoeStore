@@ -79,9 +79,10 @@
             return $found_store;
         }
 
+
         function update($new_info)
         {
-            $GLOBALS['DB']->exec("UPDATE stores SET name '{$new_info}' WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("UPDATE stores SET name = '{$new_info}' WHERE id = {$this->getId()};");
             $this->setName($new_info);
         }
 

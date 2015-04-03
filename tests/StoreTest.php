@@ -8,7 +8,7 @@
     require_once "src/Brand.php";
     require_once "src/Store.php";
 
-    $DB = new PDO('pgsql:host=localhost;dbname=shoes_test');
+    $DB = new PDO('pgsql:host=localhost;dbname=shoes_test', 'brian', '1234');
 
 
     class StoreTest extends PHPUnit_Framework_TestCase
@@ -139,6 +139,22 @@
             $result = Store::find($test_store2->getId());
 
             $this->assertEquals($test_store2, $result);
+        }
+
+        function test_update_database()
+        {
+            $name = "KMart";
+            $id = 1;
+            $test_store = new Store($name, $id);
+            $test_store->save();
+
+            $new_name = "The Big K";
+
+            $test_store->update($new_name);
+
+            $result = Store::getAll();
+            $this->assertEquals($new_name, $result[0]->getName());
+
         }
 
         function test_update()
