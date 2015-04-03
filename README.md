@@ -6,7 +6,28 @@ carry. The user should be able to add a list of stores, and for each store, add
 brands to that store. The stores have brands independently, but many storess
 can have the same brand and many brands can share the same store.
 
-# Use and Editing
+# SetUp and Use
+In order to use this program you will need Postgres, PSQL, and PHP.
+
+SetUp
+1. Open your terminal
+
+2. In your terminal, type:
+    a.  mkdir <folder name>
+    b.  cd <folder name>
+    c.  git clone https://github.com/bjkropff/assessment4_327.git .
+    d.  cd web
+    e.  php -S localhost:8000
+
+3.  Open a new tab in terminal and type:
+    a.  psql
+    b.  CREATE DATABASE pdxadventure;
+    c.  \c assessment4_327;
+    d.  \i assessment4_327.sql;
+
+3.  In a web browser window, type localhost:8000
+
+4.  Now you should be able to see the homepage for this web app.
 
 # Copyright (c) 2015 Brian Kropff
 
@@ -39,5 +60,3 @@ CREATE TABLE stores (id serial PRIMARY KEY, name varchar);
 CREATE TABLE brands (id serial PRIMARY KEY, style varchar);
 CREATE TABLE brands_stores (id serial PRIMARY KEY, brand_id int, store_id int);
 CREATE DATABASE shoes_test WITH TEMPLATE shoes;
-\c shoes_test;
-\dt
