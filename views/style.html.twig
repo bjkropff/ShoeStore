@@ -37,11 +37,16 @@
         <p>
             Store no longer exist?
         </p>
-        <a href="/brands/{{ brand.getId }}/edit">Edit your brand and stores here</a>
+        <form action="/brands/{{ brand.id }}" method="post">
+            <input type="hidden" name="_method" value="patch">
+            <label for="new_style">Edit your brand name</label>
+            <input type="text" name="new_style">
+            <button type="submit" name="button">Submit</button>
+        </form>
 
-
-        <form action="/brand/{{brand.getId}}/delete" method="post">
-            <input type="hidden" name="_method" value="delete">
+        <form action="/brand/delete" method="post">
+            <input  type="hidden" name="_method" value="delete">
+            <input type="hidden" name="brand_id" value="{{ brand.getId }}">
             <button type="submit">Delete</button>
         </form>
 

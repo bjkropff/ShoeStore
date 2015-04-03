@@ -24,7 +24,7 @@
                     <a href="/brands/{{brand.getId}}">{{ brand.getStyle }}</a>
                 </p>
             {% endfor %}
-            <form action="/delete_all_brands" method="post">
+            <form action="/brands" method="post">
                 <input type="hidden" name="_method" value="delete">
                 <button type="submit">Delete All Brands</button>
             </form>

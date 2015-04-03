@@ -94,9 +94,9 @@
     });
 
     //DELETE ALL Brands
-    $app->delete("/delete_brands", function() use ($app) {
+    $app->delete("/brands", function() use ($app) {
         Brand::deleteAll();
-        return $app['twig']->render('brands.html.twig', array('brands' => Store::getAll()));
+        return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
     });
 
 //SINGLE BRAND ROUTES
@@ -108,9 +108,17 @@
 
     //READ on edit page
     //user to edit page (a single brand) by id:
-    $app->get("/brands/{id}", function($id) use ($app){
+    $app->patch("/brands/{id}", function($id) use ($app){
         $brand = Brand::find($id);
-        return $app['twig']->render('style_edit.html.twig', array('brand' => $brand, 'stores' => $brand->getStores(), 'every_store' => Store::getAll()));
+        $brand->update($_POST['new_style']);
+        return $app['twig']->render('style.html.twig', array('brand' => $brand, 'stores' => $brand->getStores(), 'every_store' => Store::getAll()));
+    });
+
+    $app->delete("/brand/delete", function() use ($app){
+        $brand_id = $_POST['brand_id'];
+        $brand = Brand::find($brand_id);
+        $brand->delete();
+        return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
     });
 
     return $app
