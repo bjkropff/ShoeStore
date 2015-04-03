@@ -106,6 +106,13 @@
         return $app['twig']->render('style.html.twig', array('brand' => $brand, 'stores' => $brand->getStores(), 'every_store' => Store::getAll()));
     });
 
+    $app->post("/brands/{id}", function($id) use ($app){
+        $store = Store::find($_POST['store_id']);
+        $brand = Brand::find($id);
+        $brand->addStore($store);
+        return $app['twig']->render('style.html.twig', array('brand' => $brand, 'stores' => $brand->getStores(), 'every_store' => Store::getAll()));
+    });
+
     //READ on edit page
     //user to edit page (a single brand) by id:
     $app->patch("/brands/{id}", function($id) use ($app){

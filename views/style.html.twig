@@ -11,21 +11,21 @@
             <label for="new_style">Edit Store name</label>
         </form>
 
+        <form action="/brands/{{ brand.getId }}" method="post">
+            <select name="store_id">
+                {% for store in every_store %}
+                    <option value="{{ store.getId }}">{{ store.getName }} </option>
+                {% endfor %}
+            </select>
+            <button type="submit" name="button">Submit</button>
+        </form>
 
-        <p>
+        {% if stores is not empty %}
             Here is a list of stores sold at this brand:
-        </p>
-
-        {% if every_store is not empty %}
-            Brands to add to this store:
-            {% for store in every_store %}
+            {% for store in stores %}
                 <ul>
                     <li><a href="/stores/{{ store.getId }}">{{ store.getName }}</a>
-                        <form action="/delete_store" method="post">
-                            <input name="_method" type="hidden" value="delete">
-                            <input value="{{ brand.getId }}" id="brand_id" name="brand_id" type="hidden">
-                            <input value="{{ store.getId }}" id="store_id" name="store_id" type="hidden">
-                        </form>
+
                     </li>
                 </ul>
             {% endfor %}
@@ -37,7 +37,7 @@
         <p>
             Store no longer exist?
         </p>
-        <form action="/brands/{{ brand.id }}" method="post">
+        <form action="/brands/{{ brand.getId }}" method="post">
             <input type="hidden" name="_method" value="patch">
             <label for="new_style">Edit your brand name</label>
             <input type="text" name="new_style">
