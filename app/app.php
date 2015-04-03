@@ -6,7 +6,7 @@
 
     $app['debug'] = true;
 
-    $DB = new PDO('pgsql:host=localhost;dbname=shoes;user=brian;password=1234');
+    $DB = new PDO('pgsql:host=localhost;dbname=shoes;');
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path' => __DIR__.'/../views'
