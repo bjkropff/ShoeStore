@@ -23,8 +23,7 @@
                     <a href="/stores/{{store.getId}}">{{ store.getName }}</a>
                 </p>
             {% endfor %}
-            <form action="/delete_all_stores" method="post">
-                <input type="hidden" name="_method" value="delete">
+            <form action="/delete_stores" method="post">
                 <button type="submit">Delete All Stores</button>
             </form>
         {% else %}
