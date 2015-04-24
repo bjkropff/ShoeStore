@@ -1,57 +1,65 @@
 <html>
 <head>
     <title>Shoe Stores</title>
+    <script src="js/jquery-1.11.2.js"></script>
+    <script src="js/scripts.js"></script>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" type="image/x-icon" href="../img/shoe.png">
 </head>
 <body>
-    <h1>{{ store.getName }} <small>Store</small></h1>
 
-    <p>
-        Here is a list of brands sold at this store:
-    </p>
+    <div class="container">
+      <h1>{{ store.getName }} <small>Store</small></h1>
 
-    <form action="/stores/{{ store.getId }}" method="post">
-        <label for="brand_id">Brands to add to this store:</label>
-        <input value="{{ store.getId }}" id="store_id" name="store_id" type="hidden">
-        <select id="brand_id" name="brand_id" type="text">
-            {% for brand in store_brands %}
-                <option value="{{ brand.getId }}"> {{ brand.getStyle }} </option>
-            {% endfor %}
-        </select>
-        <button type="submit">Get this brand</button>
-    </form>
+      <p>
+          Here is a list of brands sold at this store:
+      </p>
 
-    {% if store_brands is not empty %}
-        Brands in this store:
-        <ul>
-            {% for brand in brands %}
+      <form action="/stores/{{ store.getId }}" method="post">
+          <label for="brand_id">Brands to add to this store:</label>
+          <input value="{{ store.getId }}" id="store_id" name="store_id" type="hidden">
+          <select id="brand_id" name="brand_id" type="text">
+              {% for brand in store_brands %}
+                  <option value="{{ brand.getId }}"> {{ brand.getStyle }} </option>
+              {% endfor %}
+          </select>
+          <button type="submit">Get this brand</button>
+      </form>
 
-                <li><a href="/brands/{{ brand.getId }}">{{ brand.getStyle }}</a></li>
-            {% endfor %}
-        </ul>
-        {% else %}
-            <p>
-                There are no brands for this store at this time.
-            </p>
-    {% endif %}
+      {% if store_brands is not empty %}
+          Brands in this store:
+          <ul>
+              {% for brand in brands %}
+
+                  <li><a href="/brands/{{ brand.getId }}">{{ brand.getStyle }}</a></li>
+              {% endfor %}
+          </ul>
+          {% else %}
+              <p>
+                  There are no brands for this store at this time.
+              </p>
+      {% endif %}
 
 
-    <form action="/stores/{{ store.getId }}" method="post">
-        <input type="hidden" name="_method" value="patch">
-        <label for="new_name">Edit store name</label>
-        <br>
-        <input id="new_name" type="text" name="new_name">
-        <button type="submit">Submit</button>
-    </form>
+      <form action="/stores/{{ store.getId }}" method="post">
+          <input type="hidden" name="_method" value="patch">
+          <label for="new_name">Edit store name</label>
+          <br>
+          <input id="new_name" type="text" name="new_name">
+          <button type="submit">Submit</button>
+      </form>
 
-    <p>
-        Store no longer exist?
-    </p>
-    <form action="/stores" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input type="hidden" name="store_id" value="{{ store.getId }}">
-        <button type="submit">Delete</button>
-    </form>
-    <h3><a href="/stores">Stores</a></h3>
-    <h3><a href="/">Home</a></h3>
+      <p>
+          Store no longer exist?
+      </p>
+      <form action="/stores" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="hidden" name="store_id" value="{{ store.getId }}">
+          <button type="submit">Delete</button>
+      </form>
+      <h3><a href="/stores">Stores</a></h3>
+      <h3><a href="/">Home</a></h3>
+    </div>
 </body>
 </html>

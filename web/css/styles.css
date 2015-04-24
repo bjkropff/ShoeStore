@@ -1,0 +1,79 @@
+img {
+  width: 100%;
+  }
+.container .jumbotron {
+  padding: 0px 0px;
+  
+}
+
+@media (max-width: 600px) {
+  body {
+    background-color: lightblue;
+    }
+
+    .container .jumbotron {
+      display:none;
+    }
+
+  }
+
+
+/*
+h1{
+  text-align: center;
+}
+
+.row {
+  text-align: center;
+}
+
+#brian {
+  float: left;
+  /*background-color:#87CEFA;*/
+}
+
+/*.nav li{
+  float:right;
+  display:inline;
+  margin: 30px 5px 0 0;
+  padding: 6px 12px;
+  font-weight:400;
+  font-size: 14px;
+
+
+#uline {
+  display: none;
+}
+
+*/
+
+
+
+    /*
+
+  hr#content {
+    display:none;
+  }
+
+
+
+  #brina {
+    text-align: center;
+  }
+
+  #uline {
+    display: inline-block;
+  }
+
+  .nav li{
+    float:left;
+    display:block;
+    margin: 15px 15px;
+    hr/;
+  }*/
+
+
+/*
+background-color:#ff4000
+display:none;
+*/

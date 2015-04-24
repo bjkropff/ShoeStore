@@ -1,16 +1,19 @@
 <html>
     <head>
         <title>All Brands at Your Local Stores</title>
+        <script src="js/jquery-1.11.2.js"></script>
+        <script src="js/scripts.js"></script>
+        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" type="image/x-icon" href="img/shoe.png">
     </head>
     <body>
-
+      <div class="container">
         <h1>{{ brand.getStyle }} <small>Brand</small></h1>
-
         <form action="/brands/{{ brand.getId }}" method="post">
             <input type="hidden" name="_method" value="patch">
             <label for="new_style">Edit Store name</label>
         </form>
-
         <form action="/brands/{{ brand.getId }}" method="post">
             <select name="store_id">
                 {% for store in every_store %}
@@ -19,19 +22,17 @@
             </select>
             <button type="submit" name="button">Submit</button>
         </form>
-
         {% if stores is not empty %}
             Here is a list of stores sold at this brand:
             {% for store in stores %}
                 <ul>
                     <li><a href="/stores/{{ store.getId }}">{{ store.getName }}</a>
-
                     </li>
                 </ul>
             {% endfor %}
             {% else %}
                 <p>
-                    There are no brands for this store at this time.
+                There are no brands for this store at this time.
                 </p>
         {% endif %}
         <p>
@@ -43,14 +44,13 @@
             <input type="text" name="new_style">
             <button type="submit" name="button">Submit</button>
         </form>
-
         <form action="/brand/delete" method="post">
             <input  type="hidden" name="_method" value="delete">
             <input type="hidden" name="brand_id" value="{{ brand.getId }}">
             <button type="submit">Delete</button>
         </form>
-
         <h3><a href="/brands">Brands</a></h3>
         <h3><a href="/">Home</a></h3>
+      </div>
     </body>
 </html>

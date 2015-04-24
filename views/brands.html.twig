@@ -1,38 +1,49 @@
 <html>
 <head>
     <title>All Brands at Your Local Stores</title>
+    <script src="js/jquery-1.11.2.js"></script>
+    <script src="js/scripts.js"></script>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" type="image/x-icon" href="../img/shoe.png">
 </head>
 <body>
+  <div class="container">
+    <div class="col-md-8">
+      <h1>These are all Available Brands</h1>
 
-    <h1>These are all Available Brands</h1>
-
-    <form action="/brands" method="post">
-        <p>Don't see your brand?</p>
-        <p>Enter your brand and we will add it to our local stores!</p>
-        <label for="style">Brand Name</label>
-        <input type="text" name="style">
-        <button type="submit">Submit</button>
-    </form>
+      <form action="/brands" method="post">
+          <p>Don't see your brand?</p>
+          <p>Enter your brand and we will add it to our local stores!</p>
+          <label for="style">Brand Name</label>
+          <input type="text" name="style">
+          <button type="submit">Submit</button>
+      </form>
 
 
-        {% if brands is not empty %}
-        <p>
-            Here are all the brands for your local shoe stores:
-        </p>
-            {% for brand in brands %}
-                <p>
-                    <a href="/brands/{{brand.getId}}">{{ brand.getStyle }}</a>
-                </p>
-            {% endfor %}
-            <form action="/brands" method="post">
-                <input type="hidden" name="_method" value="delete">
-                <button type="submit">Delete All Brands</button>
-            </form>
-        {% else %}
-            <p>
-                There are no brands to show at this time.
-            </p>
-        {% endif %}
+          {% if brands is not empty %}
+          <p>
+              Here are all the brands for your local shoe stores:
+          </p>
+              {% for brand in brands %}
+                  <p>
+                      <a href="/brands/{{brand.getId}}">{{ brand.getStyle }}</a>
+                  </p>
+              {% endfor %}
+              <form action="/brands" method="post">
+                  <input type="hidden" name="_method" value="delete">
+                  <button type="submit">Delete All Brands</button>
+              </form>
+          {% else %}
+              <p>
+                  There are no brands to show at this time.
+              </p>
+          {% endif %}
+        </div>
+        <div class="col-md-4">
+          <img src="img/jumboShoesWarehouse.jpg" alt="" />
+        </div>
         <h3><a href="/">Home</a></h3>
+      </div>
     </body>
 </html>

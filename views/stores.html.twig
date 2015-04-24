@@ -1,36 +1,50 @@
 <html>
 <head>
     <title>Shoe Stores</title>
+    <script src="js/jquery-1.11.2.js"></script>
+    <script src="js/scripts.js"></script>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" type="image/x-icon" href="../img/shoe.png">
 </head>
 <body>
-    <h1>Welcome to Our Stores</h1>
-
-        <form action="/stores" method="post">
-            <p>Don't see the store you want?</p>
-            <p>Enter a new store here!</p>
-            <label for="name">Store Name</label>
-            <input type="text" name="name">
-            <button type="submit">Submit</button>
-        </form>
+  <div class="container">
+    <div class="col-md-8">
 
 
-        {% if stores is not empty %}
-        <p>
-            Here are your local shoe stores:
-        </p>
-            {% for store in stores %}
-                <p>
-                    <a href="/stores/{{store.getId}}">{{ store.getName }}</a>
-                </p>
-            {% endfor %}
-            <form action="/delete_stores" method="post">
-                <button type="submit">Delete All Stores</button>
-            </form>
-        {% else %}
-            <p>
-                There are no stores to show at this time.
-            </p>
-        {% endif %}
-        <h3><a href="/">Home</a></h3>
+      <h1>Welcome to Our Stores</h1>
+
+          <form action="/stores" method="post">
+              <p>Don't see the store you want?</p>
+              <p>Enter a new store here!</p>
+              <label for="name">Store Name</label>
+              <input type="text" name="name">
+              <button type="submit">Submit</button>
+          </form>
+
+
+          {% if stores is not empty %}
+          <p>
+              Here are your local shoe stores:
+          </p>
+              {% for store in stores %}
+                  <p>
+                      <a href="/stores/{{store.getId}}">{{ store.getName }}</a>
+                  </p>
+              {% endfor %}
+              <form action="/delete_stores" method="post">
+                  <button type="submit">Delete All Stores</button>
+              </form>
+          {% else %}
+              <p>
+                  There are no stores to show at this time.
+              </p>
+          {% endif %}
+          <h3><a href="/">Home</a></h3>
+        </div>
+        <div class="col-md-4">
+          <img src="img/jumboShoesWarehouse.jpg" alt="" />
+        </div>
+      </div>
     </body>
 </html>
