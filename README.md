@@ -1,12 +1,12 @@
 # Hair Salon -Assessment 3
-Brian Kropff - March 20, 2015
+###Brian Kropff - March 20, 2015
 
 Description This is an app for listing shoe stores and the brands of shoes they
 carry. The user should be able to add a list of stores, and for each store, add
 brands to that store. The stores have brands independently, but many storess
 can have the same brand and many brands can share the same store.
 
-# SetUp and Use
+## SetUp and Use
 In order to use this program you will need Postgres, PSQL, and PHP.
 
 SetUp
@@ -29,11 +29,11 @@ SetUp
 
 4.  Now you should be able to see the homepage for this web app.
 
-# Copyright (c) 2015 Brian Kropff
+## Copyright (c) 2015 Brian Kropff
 
-# The MIT License (MIT)
+### The MIT License (MIT)
 
-# PERMISSION*
+### PERMISSION*
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
 the Software without restriction, including without limitation the rights to
@@ -44,7 +44,7 @@ do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all
  copies or substantial portions of the Software.
 
-# LICENSING*
+### LICENSING*
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -53,7 +53,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 
-# psql Commands:
+### psql Commands:
 CREATE DATABASE shoes;
 \c shoes;
 CREATE TABLE stores (id serial PRIMARY KEY, name varchar);
