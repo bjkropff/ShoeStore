@@ -1,4 +1,4 @@
-# Hair Salon -Assessment 3
+# Shoe Store -Assessment 4
 ###Brian Kropff - March 20, 2015
 
 Description This is an app for listing shoe stores and the brands of shoes they
